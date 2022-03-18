@@ -1,0 +1,36 @@
+.Cabecera{
+    background-color: blue;
+}
+
+
+
+.Titulo{
+    background-color: rgb(235, 255, 52);
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    
+}
+
+.Creacion{
+    background-color: aqua;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Entrada{
+    margin: 10px;
+    
+}
+
+.comboBox{
+    width: auto;
+
+}
+
+.btnA{
+   width: 100px;
+   margin: 10px;
+}
+
