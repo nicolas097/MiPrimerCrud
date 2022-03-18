@@ -38,7 +38,8 @@ function ListarPersona(arreglo){
     let htmlLista = document.getElementById('lvPersona');
     htmlLista.innerHTML = '';
     arreglo.forEach(element => {
-         htmlLista.innerHTML += `<li class="list-group-item">Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}</li>`  
+         htmlLista.innerHTML += `<li class="list-group-item">Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}</li>`
+           
     });
      
     
