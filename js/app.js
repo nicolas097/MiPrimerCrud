@@ -35,10 +35,16 @@ function addPersona(){
 
 
 function ListarPersona(arreglo){
-    let htmlLista = document.getElementById('lvPersona');
-    htmlLista.innerHTML = '';
+    lvPersona.innerHTML = '';
     arreglo.forEach(element => {
-         htmlLista.innerHTML += `<li class="list-group-item">Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}</li>`
+        lvPersona.innerHTML += ` <div>
+         <li class="list-group-item">Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}
+             <button type="button" class="btn btn-danger">Eliminar</button>
+             <button type="button" class="btn btn-warning">Editar</button>
+         </li>
+         </div>`
+
+         
            
     });
      
@@ -62,6 +68,19 @@ function Validacion(_nombre, _edad, _sexo){
     return contador;
 }
 
+function agregarWeas(){
+    
 
+    let ItemLista = 
+    `                <div>
+    <li class="list-group-item">Nombre: Vicente, Edad: 22, Sexo: Todo el día
+        <button type="button" class="btn btn-danger">Eliminar</button>
+        <button type="button" class="btn btn-warning">Editar</button>
+    </li>
+    </div>`
+
+    lvPersona.innerHTML += ItemLista
+
+}
 
 
