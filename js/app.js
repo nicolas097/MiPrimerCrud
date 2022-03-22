@@ -3,7 +3,8 @@ var arr = [];
 
 
 class Persona {
-    constructor(nombre, edad, sexo){
+    constructor(id, nombre, edad, sexo){
+        this.id = id;
         this.nombre = nombre;
         this.edad = edad;
         this.sexo = sexo;
@@ -13,24 +14,39 @@ class Persona {
 
 
 function addPersona(){
-   
-   let Nombre = document.getElementById("txtNombre").value;
-   let Edad = document.getElementById("txtEdad").value;
+   let idPersona = GenerarId(arr);
+   let Nombre = document.getElementById("txtNombre").value.trimStart().trimEnd();
+   let Edad = document.getElementById("txtEdad").value.trimStart().trimEnd();
    let SexoI = document.getElementById("cbSexo");
    let Sex = SexoI.options[SexoI.selectedIndex].innerText;
    if(Validacion(Nombre, Edad, Sex) < 3){
        
-    alert("Faltan campos");
+   alert("Faltan campos");
+
      
    }else{
-        p1 = new Persona(Nombre,Edad,Sex)
+        p1 = new Persona(idPersona,Nombre,Edad,Sex)
         arr.push(p1);       
         alert("Se creó algo");
         ListarPersona(arr);
    }
+   
+   
+}
 
-   
-   
+
+
+function GenerarId(ListaRecorrer){ 
+    let GeneratedID = 1
+    if (ListaRecorrer.length != 0)
+    {
+        ListaRecorrer.forEach(element => {
+            if(element.id == GeneratedID){
+                GeneratedID++
+            }
+        });
+    }  
+    return GeneratedID
 }
 
 
@@ -38,18 +54,22 @@ function ListarPersona(arreglo){
     lvPersona.innerHTML = '';
     arreglo.forEach(element => {
         lvPersona.innerHTML += ` <div>
-         <li class="list-group-item">Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}
+         <li class="list-group-item">id: ${element.id}, Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}
              <button type="button" class="btn btn-danger">Eliminar</button>
              <button type="button" class="btn btn-warning">Editar</button>
          </li>
-         </div>`
-
-         
-           
+         </div>`         
     });
      
     
 }
+
+function Eliminar(ListaEliminar, id_){
+    
+}
+
+
+
 
 function Validacion(_nombre, _edad, _sexo){
     let contador = 0;
