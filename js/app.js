@@ -20,7 +20,7 @@ function addPersona(){
    let SexoI = document.getElementById("cbSexo");
    let Sex = SexoI.options[SexoI.selectedIndex].innerText;
    if(Validacion(Nombre, Edad, Sex) < 3){
-       
+                    
    alert("Faltan campos");
 
      
@@ -53,11 +53,14 @@ function GenerarId(ListaRecorrer){
 function ListarPersona(arreglo){
     lvPersona.innerHTML = '';
     arreglo.forEach(element => {
-        lvPersona.innerHTML += ` <div>
-         <li class="list-group-item">id: ${element.id}, Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}
-             <button type="button" class="btn btn-danger">Eliminar</button>
-             <button type="button" class="btn btn-warning">Editar</button>
-         </li>
+        lvPersona.innerHTML += ` 
+         <div>
+            <li class="list-group-item">id: ${element.id}, Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}
+            
+            <button type="button" class="btn btn-danger" onclick="Eliminar(${arr}, ${element.id})">Eliminar</button>
+             
+            <button type="button" class="btn btn-warning">Editar</button>      
+            </li>
          </div>`         
     });
      
@@ -66,6 +69,16 @@ function ListarPersona(arreglo){
 
 function Eliminar(ListaEliminar, id_){
     
+    ListaEliminar.forEach(element => {
+        if(element.id == id_){
+            arr = ListaEliminar.filter(element => element.id != id_ );
+            ListarPersona(arr);
+            
+               
+        }
+        
+    });
+
 }
 
 
