@@ -57,7 +57,7 @@ function ListarPersona(arreglo){
          <div>
             <li class="list-group-item">id: ${element.id}, Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}
             
-            <button type="button" class="btn btn-danger" onclick="Eliminar(${arr}, ${element.id})">Eliminar</button>
+            <button type="button" class="btn btn-danger" onclick="Eliminar(arr, ${element.id})">Eliminar</button>
              
             <button type="button" class="btn btn-warning">Editar</button>      
             </li>
