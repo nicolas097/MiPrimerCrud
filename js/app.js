@@ -29,6 +29,7 @@ function addPersona(){
         arr.push(p1);       
         alert("Se creó algo");
         ListarPersona(arr);
+        LimpiarCampos();
    }
    
    
@@ -59,7 +60,7 @@ function ListarPersona(arreglo){
             
             <button type="button" class="btn btn-danger" onclick="Eliminar(arr, ${element.id})">Eliminar</button>
              
-            <button type="button" class="btn btn-warning">Editar</button>      
+            <button type="button" class="btn btn-warning" onclick="EditarPersona(${element.id}, arr)">Editar</button>      
             </li>
          </div>`         
     });
@@ -69,17 +70,16 @@ function ListarPersona(arreglo){
 
 function Eliminar(ListaEliminar, id_){
     
-    ListaEliminar.forEach(element => {
-        if(element.id == id_){
-            arr = ListaEliminar.filter(element => element.id != id_ );
-            ListarPersona(arr);
-            
-               
-        }
-        
-    });
-
+    if(confirm("Estás seguro eliminar a este usuario")){
+        ListaEliminar.forEach(element => {
+            if(element.id == id_){
+                arr = ListaEliminar.filter(element => element.id != id_ );
+                ListarPersona(arr);              
+            }            
+        });
+    }
 }
+
 
 
 
@@ -101,12 +101,12 @@ function Validacion(_nombre, _edad, _sexo){
     return contador;
 }
 
-function agregarWeas(){
+function agregarCosas(){
     
 
     let ItemLista = 
     `                <div>
-    <li class="list-group-item">Nombre: Vicente, Edad: 22, Sexo: Todo el día
+    <li class="list-group-item">Nombre: Nicolas, Edad: 24, Sexo: Todo el día
         <button type="button" class="btn btn-danger">Eliminar</button>
         <button type="button" class="btn btn-warning">Editar</button>
     </li>
@@ -116,4 +116,31 @@ function agregarWeas(){
 
 }
 
+
+function LimpiarCampos(){
+     document.getElementById('txtNombre').value = '';
+     document.getElementById('txtEdad').value = '';
+     document.getElementById('cbSexo').selectedIndex = 0;
+}
+
+
+
+function EditarPersona(_id, ArrEdit){
+    
+    let editPer = ArrEdit.filter(element => element.id == _id)[0]
+
+    document.getElementById('txtNombre').value = editPer.nombre;
+    document.getElementById('txtEdad').value = editPer.edad;
+    var seleccionSex = document.getElementById('cbSexo').selectedIndex;
+
+    
+
+
+
+     
+
+    
+
+  
+}
 
