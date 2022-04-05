@@ -1,5 +1,5 @@
 var arr = [];
-
+var buttonAgregar = undefined;
 
 
 class Persona {
@@ -131,16 +131,20 @@ function EditarPersona(_id, ArrEdit){
 
     document.getElementById('txtNombre').value = editPer.nombre;
     document.getElementById('txtEdad').value = editPer.edad;
-    var seleccionSex = document.getElementById('cbSexo').selectedIndex;
+    var seleccionar = document.getElementById('cbSexo');
+    var SexIndex = 0;
 
+    for (let i = 0; i < seleccionar.length; i++) {
+        if (seleccionar[i].innerHTML == editPer.sexo) {
+            SexIndex = i;
+            break;
+        }      
+    }
+
+    seleccionar.selectedIndex = SexIndex;
     
 
 
-
-     
-
-    
-
-  
+      
 }
 
