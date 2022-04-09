@@ -55,14 +55,14 @@ function ListarPersona(arreglo){
     lvPersona.innerHTML = '';
     arreglo.forEach(element => {
         lvPersona.innerHTML += ` 
-         <div>
+         
             <li class="list-group-item">id: ${element.id}, Nombre: ${element.nombre}, Edad: ${element.edad}, Sexo: ${element.sexo}
             
             <button type="button" class="btn btn-danger" onclick="Eliminar(arr, ${element.id})">Eliminar</button>
              
             <button type="button" class="btn btn-warning" onclick="EditarPersona(${element.id}, arr)">Editar</button>      
             </li>
-         </div>`         
+         `         
     });
      
     
@@ -95,7 +95,7 @@ function Validacion(_nombre, _edad, _sexo){
         contador++;
     }
     
-    if(_sexo != ''){
+    if(_sexo != 'Elegir'){
         contador++;
     }
     return contador;
@@ -142,9 +142,81 @@ function EditarPersona(_id, ArrEdit){
     }
 
     seleccionar.selectedIndex = SexIndex;
+
+
+    bloquearBotones(true);
+
+
+    buttonAgregar = document.getElementById('btnAgregar');
+
+    SecBtnCrear.removeChild(buttonAgregar);
+
+
+    var BottonGuardar =  `<button type="button" class="btn btn-success btnA" id="btnGuardar" onclick="guardarCambios(${editPer.id},arr)">Guardar</button>`;
+
+    var BottonCancelar = `<button type="button" class="btn btn-danger btnA" id="btnCancelar" onclick="cancelarCambios()">Cancelar</button>`;
     
+    SecBtnCrear.innerHTML += BottonGuardar;
 
-
+    SecBtnCrear.innerHTML += BottonCancelar;
+    
+    
+        
       
 }
+
+
+function cancelarCambios(){
+    bloquearBotones(false);
+    SecBtnCrear.innerHTML = '';
+    SecBtnCrear.appendChild(buttonAgregar);
+    LimpiarCampos();
+
+    
+
+}
+
+
+function guardarCambios(idEditar, arrEditar){
+    
+    let NombreEditar = document.getElementById("txtNombre");
+    let EdadEditar = document.getElementById("txtEdad");
+    let SexoEditar = document.getElementById("cbSexo");
+    let SexoIeditar = SexoEditar.options[SexoEditar.selectedIndex].text;
+
+
+    p1 = new Persona(idEditar,NombreEditar,EdadEditar,SexoIeditar)
+    
+    arrEditar.forEach(element => {
+        if(idEditar == element.id){
+           element.nombre = NombreEditar.value,
+           element.edad = EdadEditar.value,
+           element.sexo = SexoIeditar;
+        }
+    });
+
+    ListarPersona(arr);
+
+
+    cancelarCambios();
+    
+}
+
+
+
+
+function bloquearBotones(algo){
+   
+    var idLista = document.getElementById('lvPersona');
+
+    idLista.childNodes.forEach(x => {
+        if(x.nodeName == 'LI'){
+            x.childNodes[1].disabled = algo;
+            x.childNodes[3].disabled = algo;
+        }
+    });
+
+}
+
+
 
